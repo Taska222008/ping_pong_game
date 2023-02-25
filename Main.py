@@ -31,3 +31,16 @@ class Paddle_2(GameSprite):
         if (keys[K_l]) and self.rect.y < 420:
             self.rect.y += self.speed
 
+window = display.set_mode((700, 500))
+window.fill(37, 55, 0)
+
+clock = time.Clock()
+running = True
+ 
+while running:
+    for e in event.get():
+       if e.type == QUIT:
+           running = False
+
+    display.update()
+    clock.tick(60)
