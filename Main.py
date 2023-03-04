@@ -33,14 +33,14 @@ class Paddle_2(GameSprite):
 
 class Ball(GameSprite):
     def update(self):
-        self.rect.x += self.speed
+        self.rect.x += self.speed + 5
         self.rect.y += self.speed
         if self.rect.y > 450 or self.rect.y < 50:
             self.speed = self.speed* -1
     def collide(self, paddle):
         if sprite.collide_rect(paddle, self):
             self.speed = self.speed* -1
-            self.speed = self.speed* -1
+    
 
 ball = Ball("tenis_ball.png", 700/2, 500/2, 13, 50, 50)
 player_1 = Paddle_1("racket.png", 10, 175, 10, 50, 150)
@@ -48,6 +48,13 @@ player_2 = Paddle_2("racket.png", 630, 175, 10, 50, 150)
     
 window = display.set_mode((700, 500))
 window.fill((37, 55, 00))
+
+font.init()
+font_1 = font.SysFont("Arial", 27) 
+font_2 = font.SysFont("Arial", 100) 
+font_3 = font.SysFont("Arial", 50)
+
+green = (144, 198, 0)
 
 clock = time.Clock()
 running = True
@@ -73,6 +80,11 @@ while running:
         ball.collide(player_1)
         ball.collide(player_2)
         
+        if ball.rect.x > 700:
+            lose = font_2.render("Player 1 Win", 1, green)
+            
+            window.blit(lose, (100, 50))
+            finish == True
         display.update()
         
         clock.tick(60)
