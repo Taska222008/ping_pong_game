@@ -1,5 +1,6 @@
 from pygame import *
 
+background = transform.scale(image.load("download.jpeg"), (700, 500))
 class GameSprite(sprite.Sprite):
    def __init__(self, player_image, player_x, player_y, player_speed, width, height):
        super().__init__()
@@ -38,17 +39,23 @@ window.fill((37, 55, 00))
 
 clock = time.Clock()
 running = True
- 
+finish = False
+
 while running:
     for e in event.get():
        if e.type == QUIT:
            running = False
+    window.blit(background, (0, 0))
 
-    player_1.update()
-    player_2.update()
+    if finish == False:
 
-    player_1.reset()
-    player_2.reset()
+        player_1.update()
+        player_2.update()
 
-    display.update()
-    clock.tick(60)
+        player_1.reset()
+        player_2.reset()
+
+        
+        display.update()
+        
+        clock.tick(60)
