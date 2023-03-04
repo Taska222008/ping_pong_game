@@ -42,6 +42,7 @@ class Ball(GameSprite):
         if sprite.collide_rect(paddle, self):
             self.rect.x += self.speed * -1
             self.rect.y += self.speed * -1
+
 ball = Ball("tenis_ball.png", 700/2, 500/2, 10, 50, 50)
 player_1 = Paddle_1("racket.png", 10, 175, 10, 50, 150)
 player_2 = Paddle_2("racket.png", 630, 175, 10, 50, 150)  
