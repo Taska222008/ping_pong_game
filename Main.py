@@ -67,8 +67,9 @@ finish = False
 
 while running:
     for e in event.get():
-       if e.type == QUIT:
+        if e.type == QUIT:
            running = False
+
     window.blit(background, (0, 0))
 
     if finish == False:
