@@ -32,17 +32,22 @@ class Paddle_2(GameSprite):
             self.rect.y += self.speed
 
 class Ball(GameSprite):
+    def __init__(self, player_image, player_x, player_y, player_speed, width, height, speed_x, speed_y):
+        super().__init__(player_image, player_x, player_y, player_speed, width, height)
+        self.speed_x = speed_x
+        self.speed_y = speed_y
     def update(self):
-        self.rect.x += self.speed + 5
-        self.rect.y += self.speed
+        self.rect.x += self.speed_x
+        self.rect.y += self.speed_y
         if self.rect.y > 450 or self.rect.y < 50:
-            self.speed = self.speed* -1
+            self.speed_y = self.speed_y * -1
+
     def collide(self, paddle):
         if sprite.collide_rect(paddle, self):
-            self.speed = self.speed* -1
+            self.speed_x *= -1
     
 
-ball = Ball("tenis_ball.png", 700/2, 500/2, 13, 50, 50)
+ball = Ball("tenis_ball.png", 700/2, 500/2, 13, 50, 50, 5, 3)
 player_1 = Paddle_1("racket.png", 10, 175, 10, 50, 150)
 player_2 = Paddle_2("racket.png", 630, 175, 10, 50, 150)  
     
@@ -82,12 +87,13 @@ while running:
         
         if ball.rect.x > 700:
             lose = font_2.render("Player 1 Win", 1, green)
-            
+            ball.kill()
             window.blit(lose, (100, 50))
             finish == True
         if ball.rect.x < 0:
-            win = font_2.render("Player 2 Win", 1, green)
             
+            win = font_2.render("Player 2 Win", 1, green)
+            ball.kill()
             window.blit(win, (100, 50))
             finish == True
             
