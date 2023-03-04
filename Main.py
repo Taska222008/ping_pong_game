@@ -85,6 +85,12 @@ while running:
             
             window.blit(lose, (100, 50))
             finish == True
+        if ball.rect.x < 0:
+            win = font_2.render("Player 2 Win", 1, green)
+            
+            window.blit(win, (100, 50))
+            finish == True
+            
         display.update()
         
         clock.tick(60)
